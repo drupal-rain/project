@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * project.features.inc
+ */
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function project_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
+}
+
+/**
+ * Implements hook_node_info().
+ */
+function project_node_info() {
+  $items = array(
+    'project' => array(
+      'name' => t('Project'),
+      'base' => 'node_content',
+      'description' => t('A project hub.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'project_branch' => array(
+      'name' => t('Project Branch'),
+      'base' => 'node_content',
+      'description' => t('Branch of a project, the real content of the project.'),
+      'has_title' => '1',
+      'title_label' => t('Branch Title'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
+  return $items;
+}
